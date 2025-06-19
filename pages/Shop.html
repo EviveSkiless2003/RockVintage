@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | RockVintage</title>
+    <link rel="stylesheet" href="../css/Shop.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo"><a href="../index.html"><img src="../assets/Logo.png" alt="RockVintage Logo" class="logo-img"></a></div>
+            <nav>
+                <a href="#" id="cart-btn" class="cart-btn"><span class="icon-cart" aria-label="Cart"></span><span class="cart-count" id="cart-count">0</span></a>
+                <a href="pages/CP.html"><img src="../assets/Vagabond.jpg" alt="Profile" class="profile-img"></a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container shop-container">
+            <h1>Shop</h1>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="../assets/Cozy Knit Sweater.jpg" alt="Cozy Knit Sweater">
+                    <div class="product-info">
+                        <div class="product-title">Cozy Knit Sweater</div>
+                        <div class="product-price">$49.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/Classic Denim Jeans.jpg" alt="Classic Denim Jeans">
+                    <div class="product-info">
+                        <div class="product-title">Classic Denim Jeans</div>
+                        <div class="product-price">$59.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/Leather Ankle Boots.jpg" alt="Leather Ankle Boots">
+                    <div class="product-info">
+                        <div class="product-title">Leather Ankle Boots</div>
+                        <div class="product-price">$89.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/Cotton T-Shirt.jpg" alt="Cotton T-Shirt">
+                    <div class="product-info">
+                        <div class="product-title">Cotton T-Shirt</div>
+                        <div class="product-price">$24.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/Wool Scarf.jpeg" alt="Wool Scarf">
+                    <div class="product-info">
+                        <div class="product-title">Wool Scarf</div>
+                        <div class="product-price">$34.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/Canvas Tote Bag.jpg" alt="Canvas Tote Bag">
+                    <div class="product-info">
+                        <div class="product-title">Canvas Tote Bag</div>
+                        <div class="product-price">$19.99</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <button class="pagination-arrow" disabled>&lt;</button>
+                <button class="pagination-page active">1</button>
+                <button class="pagination-page">2</button>
+                <button class="pagination-page">3</button>
+                <button class="pagination-page">4</button>
+                <button class="pagination-arrow">&gt;</button>
+            </div>
+        </div>
+    </main>
+    <div id="cart-modal" class="cart-modal-overlay" style="display:none;">
+        <div class="cart-modal-content">
+            <button class="cart-modal-close" id="cart-modal-close">&times;</button>
+            <div class="cart-content">
+                <h2>Cart</h2>
+                <div class="cart-items" id="cart-items">
+                </div>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Total</span>
+                        <span id="total-price">$0.00</span>
+                    </div>
+                </div>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram"><img src="../assets/instagram icon.png" alt="Instagram"></a>
+        <a href="#" aria-label="Twitter"><img src="../assets/twitter icon.png" alt="Twitter"></a>
+        <a href="#" aria-label="Facebook"><img src="../assets/facebook icon.png" alt="Facebook"></a>
+      </div>
+      <div class="footer-text">© 2025 RockVintage. All rights reserved.</div>
+    </footer>
+    <script src="../js/Shop.js"></script>
+</body>
+</html>

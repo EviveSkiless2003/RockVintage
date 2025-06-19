@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="../css/AD Product Management.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">Admin Panel</div>
+        <ul class="sidebar-menu">
+            <li><a href="AD Homepage.html">Admin Home</a></li>
+            <li class="active"><a href="AD Product Management.html">Products</a></li>
+            <li><a href="AD Order Management.html">Orders</a></li>
+            <li><a href="AD Profile.html">Profile</a></li>
+            <li><a href="AD Logout.html">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1 class="page-title">Product Management</h1>
+        <section class="add-product-section">
+            <h2>Add Product</h2>
+            <form id="productForm" autocomplete="off">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+                <label for="productPrice">Price</label>
+                <input type="text" id="productPrice" name="productPrice" placeholder="Enter product price" required>
+                <div class="image-upload" id="imageUpload">
+                    <input type="file" id="productImage" name="productImage" accept="image/*" hidden>
+                    <div class="upload-area" id="uploadArea">
+                        <span class="upload-title">Upload Image</span>
+                        <span class="upload-desc">Drag and drop or click to upload</span>
+                        <button type="button" class="btn btn-secondary" id="browseBtn">Browse Files</button>
+                    </div>
+                </div>
+                <label for="productDesc">Description</label>
+                <textarea id="productDesc" name="productDesc" placeholder=""></textarea>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+        </section>
+        <section class="product-list-section">
+            <h2>Product List</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search products">
+            </div>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <tr><td>Elegant Leather Handbag</td><td>$120</td></tr>
+                    <tr><td>Classic Cotton T-Shirt</td><td>$25</td></tr>
+                    <tr><td>Modern Smartwatch</td><td>$200</td></tr>
+                    <tr><td>Cozy Knit Sweater</td><td>$60</td></tr>
+                    <tr><td>Durable Hiking Boots</td><td>$150</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script src="../js/AD Product Management.js"></script>
+</body>
+</html>
