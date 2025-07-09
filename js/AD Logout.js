@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const logoutBtn = document.getElementById('confirmLogout');
-    logoutBtn.addEventListener('click', function() {
-        alert('You have been logged out (demo only).');
+    logoutBtn.addEventListener('click', async function() {
+        try {
+            await fetch('../php/logout.php');
+        } catch (err) {}
         window.location.href = '../index.html';
     });
 });
