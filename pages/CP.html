@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,6 @@
                 </label>
             </div>
             <div class="profile-info">
-                <h2>Fikadu Molla</h2>
                 <p class="email">Fikadu191@gmail.com</p>
             </div>
         </div>
@@ -44,8 +44,9 @@
             </div>
         </form>
         <div class="form-actions-bottom">
-            <button type="submit" class="save-btn" form="profileForm">Save Changes</button>
-            <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
+            <button type="submit" class="action-btn save-btn" form="profileForm">Save Changes</button>
+            <button type="button" class="action-btn logout-btn" id="logoutBtn">Logout</button>
+            <button type="button" class="action-btn return-shop-btn" onclick="window.location.href='Shop.html'">Return to Shop</button>
         </div>
         <div class="order-history-section">
             <h2>Order History</h2>
@@ -54,29 +55,12 @@
                     <tr>
                         <th>Order #</th>
                         <th>Date</th>
+                        <th>Items</th>
                         <th>Total</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#12345</td>
-                        <td>2024-01-15</td>
-                        <td>$150.00</td>
-                        <td><span class="status ordered">Ordered</span></td>
-                    </tr>
-                    <tr>
-                        <td>#67890</td>
-                        <td>2023-12-20</td>
-                        <td>$75.50</td>
-                        <td><span class="status ordered">Ordered</span></td>
-                    </tr>
-                    <tr>
-                        <td>#11223</td>
-                        <td>2023-11-05</td>
-                        <td>$220.75</td>
-                        <td><span class="status ordered">Ordered</span></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
