@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +12,10 @@
     <div class="container">
         <h1>Welcome back</h1>
         <form id="loginForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Sign In</button>
+            <div id="login-error" style="color:#e53935; margin-top:10px; text-align:center;"></div>
         </form>
         <div class="signup-link">
             <span>Don't have an account?</span> <a href="Signup.html">Sign up</a>
