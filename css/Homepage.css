@@ -97,6 +97,13 @@ body {
   width: 80%;
   max-width: 1100px;
   margin: 48px auto 0 auto;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 0 0 40px !important;
+  margin: 32px 0 !important;
+  border-radius: 0 !important;
+  transition: box-shadow 0.2s;
 }
 
 .new-arrivals h2 {
