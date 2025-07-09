@@ -8,4 +8,25 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setAttribute('aria-current', 'page');
         });
     });
+
+    
+    async function loadStats() {
+        try {
+           
+            const prodRes = await fetch('../php/get_products.php');
+            const prodData = await prodRes.json();
+            if (prodData.success) {
+                document.querySelectorAll('.stat-card .stat-value')[0].textContent = prodData.products.length;
+            }
+            
+            const orderRes = await fetch('../php/get_orders.php');
+            const orderData = await orderRes.json();
+            if (orderData.success) {
+                document.querySelectorAll('.stat-card .stat-value')[1].textContent = orderData.orders.length;
+            }
+        } catch (err) {
+           
+        }
+    }
+    loadStats();
 });
