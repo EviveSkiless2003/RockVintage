@@ -16,4 +16,76 @@ document.addEventListener('DOMContentLoaded', function() {
             row.style.display = text.includes(filter) ? '' : 'none';
         });
     });
+
+    // Fetch and render orders
+    async function loadOrders() {
+        try {
+            const res = await fetch('../php/get_orders.php');
+            const data = await res.json();
+            if (data.success) {
+                tableBody.innerHTML = '';
+                data.orders.forEach(order => {
+                    // Combine product names and quantities
+                    const products = order.items.map(item => `${item.product_name} (x${item.quantity})`).join(', ');
+                    // Calculate total amount
+                    const total = order.items.reduce((sum, item) => sum + item.quantity * (item.price || 0), 0);
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>#${order.order_id}</td>
+                        <td>${order.customer_name || order.user_email}</td>
+                        <td>${products}</td>
+                        <td>$${total.toFixed(2)}</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="ordered" ${order.status === 'ordered' ? 'selected' : ''}>Ordered</option>
+                                <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                                <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                                <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                                <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    `;
+                    // Status update
+                    tr.querySelector('.status-dropdown').addEventListener('change', async function() {
+                        const newStatus = this.value;
+                        try {
+                            const res = await fetch('../php/update_order.php', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                body: `order_id=${order.order_id}&status=${encodeURIComponent(newStatus)}`
+                            });
+                            const data = await res.json();
+                            if (!data.success) alert(data.message || 'Failed to update status.');
+                        } catch (err) {
+                            alert('An error occurred.');
+                        }
+                    });
+                    // Delete order
+                    tr.querySelector('.delete-btn').addEventListener('click', async function() {
+                        if (!confirm('Delete this order?')) return;
+                        try {
+                            const res = await fetch('../php/delete_order.php', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                body: `order_id=${order.order_id}`
+                            });
+                            const data = await res.json();
+                            if (data.success) {
+                                tr.remove();
+                            } else {
+                                alert(data.message || 'Failed to delete order.');
+                            }
+                        } catch (err) {
+                            alert('An error occurred.');
+                        }
+                    });
+                    tableBody.appendChild(tr);
+                });
+            }
+        } catch (err) {
+            tableBody.innerHTML = '<tr><td colspan="4">Failed to load orders.</td></tr>';
+        }
+    }
+    loadOrders();
 });
