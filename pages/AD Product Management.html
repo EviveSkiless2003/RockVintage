@@ -29,6 +29,8 @@
                 <div class="image-upload" id="imageUpload">
                     <input type="file" id="productImage" name="productImage" accept="image/*" hidden>
                     <div class="upload-area" id="uploadArea">
+                        <img id="uploadPlaceholder" src="../assets/Logo.png" alt="Upload Placeholder" style="width:60px;height:60px;opacity:0.4;display:block;margin:0 auto 8px auto;">
+                        <img id="addProductPreview" src="" alt="Preview" style="max-width:60px;max-height:60px;display:none;margin:0 auto 8px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
                         <span class="upload-title">Upload Image</span>
                         <span class="upload-desc">Drag and drop or click to upload</span>
                         <button type="button" class="btn btn-secondary" id="browseBtn">Browse Files</button>
@@ -47,16 +49,13 @@
             <table class="product-table">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="productTableBody">
-                    <tr><td>Elegant Leather Handbag</td><td>$120</td></tr>
-                    <tr><td>Classic Cotton T-Shirt</td><td>$25</td></tr>
-                    <tr><td>Modern Smartwatch</td><td>$200</td></tr>
-                    <tr><td>Cozy Knit Sweater</td><td>$60</td></tr>
-                    <tr><td>Durable Hiking Boots</td><td>$150</td></tr>
                 </tbody>
             </table>
         </section>
