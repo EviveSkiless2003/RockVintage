@@ -1,4 +1,3 @@
-
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -54,7 +53,7 @@ if (showLogin) showLogin.addEventListener('click', e => {
 
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
+  loginForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
@@ -67,12 +66,76 @@ if (loginForm) {
       loginForm.appendChild(err);
       return err;
     })();
-    if (email === 'mikias191@gmail.com' && password === '1234') {
-      window.location.href = 'AD Homepage.html';
-    } else if (email === 'Fikadu191@gmail.com' && password === '1234') {
-      window.location.href = 'Shop.html';
-    } else {
-      errorMsg.textContent = 'Invalid email or password.';
+    errorMsg.textContent = '';
+    try {
+      const response = await fetch('../php/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+      });
+      const data = await response.json();
+      if (data.success) {
+        
+        const sessionRes = await fetch('../php/session_info.php');
+        const sessionData = await sessionRes.json();
+        if (sessionData.role === 'admin') {
+          window.location.href = 'AD Homepage.html';
+        } else {
+          window.location.href = 'Shop.html';
+        }
+      } else {
+        errorMsg.textContent = data.message || 'Invalid email or password.';
+      }
+    } catch (err) {
+      errorMsg.textContent = 'An error occurred. Please try again.';
+    }
+  });
+}
+
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirmPassword').value;
+    const errorMsg = document.getElementById('signup-error') || (() => {
+      const err = document.createElement('div');
+      err.id = 'signup-error';
+      err.style.color = '#e53935';
+      err.style.marginTop = '10px';
+      err.style.textAlign = 'center';
+      signupForm.appendChild(err);
+      return err;
+    })();
+    errorMsg.textContent = '';
+    if (password !== confirmPassword) {
+      errorMsg.textContent = 'Passwords do not match.';
+      return;
+    }
+    try {
+      const response = await fetch('../php/signup.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+      });
+      const data = await response.json();
+      if (data.success) {
+        errorMsg.style.color = '#43a047';
+        errorMsg.textContent = data.message || 'Signup successful! You can now log in.';
+        setTimeout(() => {
+          errorMsg.textContent = '';
+          errorMsg.style.color = '#e53935';
+          closeModal(signupModal);
+          openModal(loginModal);
+        }, 1500);
+      } else {
+        errorMsg.style.color = '#e53935';
+        errorMsg.textContent = data.message || 'Signup failed.';
+      }
+    } catch (err) {
+      errorMsg.style.color = '#e53935';
+      errorMsg.textContent = 'An error occurred. Please try again.';
     }
   });
 }
